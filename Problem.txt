@@ -1,0 +1,22 @@
+ABOUT THE APPLICATION
+You have to create a simple blogging API.
+TIME DURATION
+The allocated time for completing this application is 5 (five) hours.
+FEATURE REQUIREMENTS
+The application will have the following features:
+Users can register using a unique email address and other basic information (according to your wish).
+1.	Users can
+•	View different posts and comments
+•	Create a new post
+•	Modify only the post(s) of his/her own
+•	Post comment on a topic
+•	Search for a specific user or topic
+2.	Designing of database is completely upon you. Design it according to your need but do it wisely and efficiently.
+TECHNICAL REQUIREMENTS
+1.	Design a four layered architecture with generic repository pattern.
+2.	Make sure that there is a One-to-Many relation between posts and comments.
+3.	Use of Dependency Injection (DI) is optional.
+4.	Use standard resource URI and HTTP status codes for your responses
+5.	Test your application using Postman or any other API client if it is working or not.
+
+Happy Coding
