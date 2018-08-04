@@ -14,6 +14,7 @@ namespace BlogAPP.Controllers
     public class UserController : ApiController
     {
         IUserRepository urepo = new UserRepository();
+        IPostRepository prepo = new PostRepository();
 
         [Route("")]
         public IHttpActionResult Get()
@@ -21,7 +22,7 @@ namespace BlogAPP.Controllers
             return Ok(urepo.GetAll());
         }
 
-        [Route("{id}")]
+        [Route("{id}", Name="GetUser")]
         public IHttpActionResult Get(int id)
         {
             return Ok(urepo.Get(id));
@@ -31,10 +32,10 @@ namespace BlogAPP.Controllers
         public IHttpActionResult Post(User user)
         {
             User user1 = urepo.GetUserByEmail(user.Email);
-            if (user1 != null)
+            if (user1 == null)
             {
                 urepo.Insert(user);
-                string url = Url.Link("Get", new { id = user.Id });
+                string url = Url.Link("GetUser", new { id = user.Id });
                 return Created(url, user);
             }
 
@@ -69,10 +70,33 @@ namespace BlogAPP.Controllers
             return Ok(urepo.GetPostByUserId(id));
         }
 
-        [Route("{id}/posts")]
-        public IHttpActionResult GetAllPost()
+        [Route("{id}/posts/{id1}")]
+        public IHttpActionResult PutOwnPost([FromBody]Post post, [FromUri]int id1, [FromUri]int id)
         {
-            return Ok(urepo.GetAllPost());
+            post.Id = id1;
+            post.UserId = id;
+            Post p = prepo.Get(id1);
+            if (post.UserId == p.UserId)
+            {
+                prepo.Update(post);
+                return Ok(prepo.Get(post.Id));
+            }
+            else
+                return StatusCode(HttpStatusCode.Forbidden);
         }
+
+        [Route("{id}/posts/{id1}")]
+        public IHttpActionResult Delete(int id, int id1)
+        {
+            Post p = prepo.Get(id1);
+            if (p.UserId == id)
+            {
+                prepo.Delete(p);
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            else
+                return StatusCode(HttpStatusCode.Forbidden);
+        }
+
     }
 }
