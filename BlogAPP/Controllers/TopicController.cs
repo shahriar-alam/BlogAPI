@@ -13,7 +13,12 @@ namespace BlogAPP.Controllers
     [RoutePrefix("api/topics")]
     public class TopicController : ApiController
     {
-        ITopicRepository trepo = new TopicRepository();
+        ITopicRepository trepo;
+
+        public TopicController(ITopicRepository trepo)
+        {
+            this.trepo = trepo;
+        }
 
         [Route("")]
         public IHttpActionResult Get()

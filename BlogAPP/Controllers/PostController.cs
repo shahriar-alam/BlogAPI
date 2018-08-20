@@ -13,7 +13,12 @@ namespace BlogAPP.Controllers
     [RoutePrefix("api/posts")]
     public class PostController : ApiController
     {
-        IPostRepository prepo = new PostRepository(); 
+        IPostRepository prepo;
+
+        public PostController(IPostRepository prepo)
+        {
+            this.prepo = prepo;
+        }
 
         [Route("")]
         public IHttpActionResult Get()

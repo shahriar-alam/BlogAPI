@@ -13,8 +13,14 @@ namespace BlogAPP.Controllers
     [RoutePrefix("api/users")]
     public class UserController : ApiController
     {
-        IUserRepository urepo = new UserRepository();
-        IPostRepository prepo = new PostRepository();
+        IUserRepository urepo;
+        IPostRepository prepo;
+
+        public UserController(IUserRepository urepo, IPostRepository prepo)
+        {
+            this.urepo = urepo;
+            this.prepo = prepo;
+        }
 
         [Route("")]
         public IHttpActionResult Get()
