@@ -21,7 +21,7 @@ namespace BlogAPP.Controllers
             return Ok(crepo.GetAll());
         }
 
-        [Route("{id}", Name = "GetTopic")]
+        [Route("{id}", Name = "GetComment")]
         public IHttpActionResult Get(int id)
         {
             return Ok(crepo.Get(id));
@@ -31,7 +31,7 @@ namespace BlogAPP.Controllers
         public IHttpActionResult Post(Comment comment)
         {
             crepo.Insert(comment);
-            string url = Url.Link("GetTopic", new { id = comment.Id });
+            string url = Url.Link("GetComment", new { id = comment.Id });
             return Created(url, comment);
         }
 
