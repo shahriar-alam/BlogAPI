@@ -17,7 +17,7 @@ namespace BlogRepository
 
         public List<Post> GetPostByUserId(int id)
         {
-            return this.context.Posts.Where(p => p.UserId == id).ToList();
+            return this.context.Posts.Where(p => p.User.Id == id).ToList();
         }
 
         public User GetUserByEmail(string email)

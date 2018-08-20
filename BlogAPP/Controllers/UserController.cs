@@ -75,9 +75,9 @@ namespace BlogAPP.Controllers
         public IHttpActionResult PutOwnPost([FromBody]Post post, [FromUri]int id1, [FromUri]int id)
         {
             post.Id = id1;
-            post.UserId = id;
+            post.User.Id = id;
             Post p = prepo.Get(id1);
-            if (post.UserId == p.UserId)
+            if (post.User.Id == p.User.Id)
             {
                 prepo.Update(post);
                 return Ok(prepo.Get(post.Id));
@@ -90,7 +90,7 @@ namespace BlogAPP.Controllers
         public IHttpActionResult Delete(int id, int id1)
         {
             Post p = prepo.Get(id1);
-            if (p.UserId == id)
+            if (p.User.Id == id)
             {
                 prepo.Delete(p);
                 return StatusCode(HttpStatusCode.NoContent);
