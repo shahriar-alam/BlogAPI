@@ -10,6 +10,7 @@ namespace BlogEntity
     {
         public int PostId { set; get; }
         public int CommentorId { set; get; }
+        public DateTime DateTime { set; get; }
         public string CommentDetail { set; get; }
     }
 }
