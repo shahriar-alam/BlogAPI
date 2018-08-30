@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/blog-post.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+  </head>
+
+  <body ng-app="myApp">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="bloghome.html">Our Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="bloghome.html">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blogprofile.html">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blognewpost.html">New Post</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="bloglogin.html">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br><br>
+    <br><br><br><br>
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row" ng-controller="PostController">
+
+        <!-- Post Content Column -->
+        <br><br>
+
+        <div class="col-lg-8" style="margin-left: 200px">
+           <br>
+           <h2 style="margin-left: 210px"><b>Create your Post</b></h2>
+           <br>
+           <form ng-submit="submitpost()">
+           <div class="form-group row">
+
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="title" placeholder="Title" ng-model="topictitle" required>
+                </div>
+           </div>
+           <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Topic</label>
+              </div>
+              <select class="custom-select" id="inputGroupSelect01" ng-model="topic" ng-options="t.topicName for t in topics">
+              </select>
+            </div>
+            <div id="">
+                <textarea rows="20" cols="100" name="post" placeholder="Enter text here..." ng-model="topicdetail"></textarea>
+            </div>
+
+                <div style="position: absolute; height: 200px; width: 400px; margin: -100px 0 0 -200px; top: 130%; left: 70%">
+                    <button type="submit" class="btn btn-primary">POST</button>
+                </div>
+
+              </form>
+               </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <br><br><br><br><br><br><br>
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/js/angular.min.js"></script>
+    <script src="vendor/js/bloghome.js"></script>
+
+  </body>
+
+</html>
