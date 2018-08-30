@@ -32,6 +32,8 @@ namespace BlogAPP.Controllers
         {
             trepo.Insert(topic);
             string url = Url.Link("GetTopic", new { id = topic.Id });
+            topic.TopicId = topic.Id;
+            trepo.Update(topic);
             return Created(url, topic);
         }
 
