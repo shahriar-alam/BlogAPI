@@ -23,7 +23,7 @@ namespace BlogAPP.Controllers
             return Ok(urepo.GetAll());
         }
 
-        [Route("{id}", Name="GetUser")]
+        [Route("{id}", Name = "GetUser")]
         public IHttpActionResult Get(int id)
         {
             return Ok(urepo.Get(id));
@@ -32,17 +32,39 @@ namespace BlogAPP.Controllers
         [Route("")]
         public IHttpActionResult Post(User user)
         {
+            if(user == null)
+                return StatusCode(HttpStatusCode.Forbidden);
+            else
+            {
+                User user1 = urepo.GetUserByEmail(user.Email);
+                if(user1 == null)
+                    return StatusCode(HttpStatusCode.Forbidden);
+                else
+                {
+                    return Ok(user1);
+                }
+            }
+        }
+
+        [Route("{id}")]
+        public IHttpActionResult Postnew(User user)
+        {
             User user1 = urepo.GetUserByEmail(user.Email);
             if (user1 == null)
             {
                 urepo.Insert(user);
                 string url = Url.Link("GetUser", new { id = user.Id });
+                User u = user;
+                u.UserId = u.Id;
+                urepo.Update(u);
+                user = u;
                 return Created(url, user);
             }
 
             else
                 return StatusCode(HttpStatusCode.Forbidden);
         }
+
 
         [Route("{id}")]
         public IHttpActionResult Put([FromBody]User user, [FromUri]int id)

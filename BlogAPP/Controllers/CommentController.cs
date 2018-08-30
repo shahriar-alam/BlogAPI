@@ -1,5 +1,6 @@
 ﻿using BlogEntity;
 using BlogInterface;
+using System;
 using System.Net;
 using System.Web.Http;
 
@@ -30,8 +31,11 @@ namespace BlogAPP.Controllers
         [Route("")]
         public IHttpActionResult Post(Comment comment)
         {
+            //comment.DateTime = DateTime.Today;
             crepo.Insert(comment);
             string url = Url.Link("GetComment", new { id = comment.Id });
+            comment.CommentId = comment.Id;
+            crepo.Update(comment);
             return Created(url, comment);
         }
 
